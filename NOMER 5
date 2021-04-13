@@ -1,0 +1,129 @@
+package personfile;
+
+public class Customer extends person{
+    int customerNumber;
+    boolean mailingList;
+    
+    Customer(String name,String address, int phoneNumber, int customerNumber, boolean mailingList){
+    super(name, address, phoneNumber);
+    this.customerNumber = customerNumber;
+    this.mailingList = mailingList;
+    }
+
+    public int getCustomerNumber(){
+        return customerNumber;
+    }
+    
+    public boolean getMailingList(){
+        return mailingList;
+    }
+    
+    public void setCustomerNumber(int customerNumber){
+        this.customerNumber = customerNumber;
+    }
+    
+    public void setMailingList(boolean mailingList){
+        this.mailingList = mailingList;
+    }
+    
+    @Override
+    public String toString(){
+        return "\n\nThe customer name is: "+name+".\tThe customer address is: "+address+".\tThe phone number: "+phoneNumber+".\nThe customer number is: "+customerNumber+".\tMailing list: "+mailingList;
+    }
+}
+
+
+package personfile;
+
+public class PersonFile {
+  
+    public static void main(String[] args) {
+       PreferredCustomer preferredCustomer = new PreferredCustomer("Yulian Andree","West Street",12345,1100,true,500);
+       System.out.println(preferredCustomer.toString());
+    }
+    
+}
+
+
+package personfile;
+
+public final class PreferredCustomer extends Customer {
+    int purchase;
+    double discount;
+    
+    public PreferredCustomer(String name,String address, int phoneNumber, int customerNumber, boolean mailingList, int purchase){
+        super(name, address, phoneNumber, customerNumber, mailingList);
+        this.purchase = purchase;
+    
+        switch (purchase) {
+            case 500 -> setDiscount(5);
+            case 1000 -> setDiscount(6);
+            case 1500 -> setDiscount(7);
+            case 2000 -> setDiscount(10);
+            default -> {
+            }
+        }
+    }
+    
+    public double getPurchase(){
+        return purchase;
+    }
+    
+    public double getDiscount(){
+        return discount;
+    }
+    
+    public void setPurchase(int purchase){
+        this.purchase = purchase;
+    }
+    
+    public void setDiscount(double discount){
+        this.discount = discount;
+    }
+    
+    @Override
+    public String toString(){
+        String preferredCustomer = super.toString()+"\nPurchase: "+getPurchase()+"\nDiscount: "+getDiscount();
+        return preferredCustomer;
+    }
+}
+   
+
+
+package personfile;
+
+public class person {
+    String name;
+    String address;
+    int phoneNumber;
+    
+    public person(String name,String address, int phoneNumber){
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public String getAddress(){
+        return address;
+    }
+    
+    public int getPhoneNumber(){
+        return phoneNumber;
+    }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public void setAddress(String address){
+        this.address = address;
+    }
+    
+    public void setPhoneNumber(int phoneNumber){
+        this.phoneNumber = phoneNumber;
+    }
+}
